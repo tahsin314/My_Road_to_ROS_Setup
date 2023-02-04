@@ -1,10 +1,10 @@
 # My_Road_to_ROS_Setup
 
-I have started learning ROS (Robotic Operating System) recently. In this repo, I will keep sharing how I setup ROS on my `windows 11`. I found setting up ROS on windows 11 and accessing peripherals such as camera and USB device complicated. The resources available online are confusing and I wasted a lot of time in the last two weeks reading and testing through comments on various forums. I don't want anyone (including me) to go through such pain. 
+I recently started learning ROS (Robotic Operating System), and I am documenting my experience with setting up ROS on my `Windows 11` machine in this repository. The process of setting up ROS and accessing peripheral devices such as cameras and USB devices on Windows 11 has been an utter nightmare. The online resources available are both confusing and unreliable, causing me to waste an unreasonable amount of time over the last two weeks trying to sift through comments on various forums. It is unacceptable that anyone, including myself, should have to endure such a frustrating and time-consuming process.
 
 ## Setting up WSL2 and Ubuntu
-
-Now to setup ROS on your `Windows 11`, you will need to setup `WSL2` and `Ubuntu` on your system. You may find instruction for installing [ROS on Windows](http://wiki.ros.org/Installation/Windows) but it will malfunction at several occassions. So, do that on your own risk. Follow [this](https://www.youtube.com/watch?v=wjbbl0TTMeo) tutorial for enabling WSL2 on your PC and downloading Ubuntu. **Remember, you should download `Ubuntu 20.04.5 LTS` version**. Ubuntu versions higher than that are currently not being supported by ROS. 
+ 
+To configure ROS on your Windows 11 machine, it's necessary to set up WSL2 and Ubuntu. While there are [tutorials](http://wiki.ros.org/Installation/Windows) available for installing ROS on Windows, they may not be reliable. Proceed at your own risk. For enabling WSL2 and downloading Ubuntu, refer to [this](https://www.youtube.com/watch?v=wjbbl0TTMeo) tutorial.**Remember, you should download `Ubuntu 20.04.5 LTS` version**. Ubuntu versions higher than that are currently not being supported by ROS. 
 
 ## Set up ROS
 
@@ -12,10 +12,14 @@ Open your WSL2/Ubuntu terminal and follow the instructions from [here](http://wi
 
 ## Installing X Server
 
-Your Ubuntu is a headless OS. So if you want to access anything from Ubuntu that involves GUI, you will need to forward it to a port on your windows system. I tried several techniques to do that, but [this](https://www.youtube.com/watch?v=4SZXbl9KVsw) video worked for me. In addition to that, add the following line to your `~/.bashrc`:
+As your Ubuntu setup is headless, GUI access to it requires port forwarding on the host Windows system. After experimenting with various methods, I successfully accomplished this by following [this](https://www.youtube.com/watch?v=4SZXbl9KVsw) video tutorial. To further enhance the setup, add the following line to your `~/.bashrc` file:
 
 ```
 export DISPLAY=$(cat /etc/resolv.conf |grep nameserver| sed 's/nameserver //'):0.0
 ```
 
-## 
+Run `roscore`, `rqt_graph` in two different terminals and see if they work properly at this stage. If not, go back to any of the earlier steps and try to traceback where it went wrong.
+
+## Set up Camera and other USB Devices (If required)
+
+I encountered numerous difficulties during this phase. After spending significant time troubleshooting, I discovered [this](https://github.com/Katzeee/Notes/blob/master/about-programing/wsl2-using-usb.md) resource to be incredibly useful in resolving my problems. A big shoutout to [@Katzeee](https://github.com/Katzeee) for compiling a top-notch note.
