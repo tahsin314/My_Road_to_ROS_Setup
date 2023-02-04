@@ -12,7 +12,7 @@ Open your WSL2/Ubuntu terminal and follow the instructions from [here](http://wi
 
 ## Installing X Server
 
-Your Ubuntu is a headless OS. So if you want to access anything from Ubuntu that involves GUI, you will need to forward it to a port on your windows system. I tried several techniques to do that, but [this](https://www.youtube.com/watch?v=4SZXbl9KVsw) video worked for me. In addition to that, add the following line to your bashrc:
+Your Ubuntu is a headless OS. So if you want to access anything from Ubuntu that involves GUI, you will need to forward it to a port on your windows system. I tried several techniques to do that, but [this](https://www.youtube.com/watch?v=4SZXbl9KVsw) video worked for me. In addition to that, add the following line to your `~/.bashrc`:
 
 ```
 export DISPLAY=$(cat /etc/resolv.conf |grep nameserver| sed 's/nameserver //'):0.0
