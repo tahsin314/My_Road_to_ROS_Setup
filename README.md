@@ -4,4 +4,18 @@ I have started learning ROS (Robotic Operating System) recently. In this repo, I
 
 ## Setting up WSL2 and Ubuntu
 
-Now to setup ROS on your `Windows 11`, you will need to setup `WSL2` and `Ubuntu` on your system. You may find instruction for installing [ROS on Windows](http://wiki.ros.org/Installation/Windows) but it will malfunction at several occasions. So, do that on your own risk. Follow [this](https://www.youtube.com/watch?v=wjbbl0TTMeo) tutorial for enabling WSL2 on your PC and downloading Ubuntu. **Remember, you should download `Ubuntu 20.04.5 LTS` version**. Ubuntu versions higher than that are currently not being supported by ROS. 
+Now to setup ROS on your `Windows 11`, you will need to setup `WSL2` and `Ubuntu` on your system. You may find instruction for installing [ROS on Windows](http://wiki.ros.org/Installation/Windows) but it will malfunction at several occassions. So, do that on your own risk. Follow [this](https://www.youtube.com/watch?v=wjbbl0TTMeo) tutorial for enabling WSL2 on your PC and downloading Ubuntu. **Remember, you should download `Ubuntu 20.04.5 LTS` version**. Ubuntu versions higher than that are currently not being supported by ROS. 
+
+## Set up ROS
+
+Open your WSL2/Ubuntu terminal and follow the instructions from [here](http://wiki.ros.org/Installation/Ubuntu).
+
+## Installing X Server
+
+Your Ubuntu is a headless OS. So if you want to access anything from Ubuntu that involves GUI, you will need to forward it to a port on your windows system. I tried several techniques to do that, but [this](https://www.youtube.com/watch?v=4SZXbl9KVsw) video worked for me. In addition to that, add the following line to your bashrc:
+
+```
+export DISPLAY=$(cat /etc/resolv.conf |grep nameserver| sed 's/nameserver //'):0.0
+```
+
+## 
