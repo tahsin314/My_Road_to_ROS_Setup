@@ -55,3 +55,10 @@ If it does not work, check your log files. One of the possible reasons might be 
 ```
 rosparam set /usb_cam/pixel_format mjpeg
 ```
+
+While using `OpenCV` in your python, add the following lines
+
+```
+cap = cv2.VideoCapture("/dev/video0", ) # check this
+cap.set(cv2.CAP_PROP_FOURCC,cv2.VideoWriter_fourcc('M','J','P','G'))
+```
