@@ -50,7 +50,7 @@ Run the following command after `roscore` and see whether it works or terminates
 rosrun usb_cam usb_cam_node
 ```
 
-If it does not work, check your log files. One of the possible reasons might be that the default `yuyv` might not be not supported or has higher bitrate requirement compared to the USB port your device is connected to. You can change it to `mjpeg` by executing the following command:
+If it does not work, check your log files. One of the possible reasons might be that the default `yuyv` pixel format is not supported or has higher bitrate requirement compared to the USB port your device is connected to. You can change it to `mjpeg` by executing the following command:
 
 ```
 rosparam set /usb_cam/pixel_format mjpeg
