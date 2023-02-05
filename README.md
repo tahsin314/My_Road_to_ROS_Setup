@@ -23,3 +23,18 @@ Run `roscore`, `rqt_graph` in two different terminals and see if they work prope
 ## Set up Camera and other USB Devices (If required)
 
 I encountered numerous difficulties during this phase. After spending significant time troubleshooting, I discovered [this](https://github.com/Katzeee/Notes/blob/master/about-programing/wsl2-using-usb.md) resource to be incredibly useful in resolving my problems. A big shoutout to [@Katzeee](https://github.com/Katzeee) for compiling a top-notch note.
+
+## Initiating ROS for your project
+
+- First, Run `XLaunch` on your windows. Put a check mark on *DISABLE ACCESS CONTROL*
+
+- Open `powershell` as Administrator. Run The following commands:
+
+```
+$ usbipd wsl list # Get you the list of usb devices attached to your windows system
+$ usbipd wsl attach -b <busid> # Put the busid of your desired device here. For me, when I'm using webcam, it's almost always 2-5
+# If an error occurs, execute the following command first
+$ usbipd bind --force -b <busid>
+``` 
+
+- 
