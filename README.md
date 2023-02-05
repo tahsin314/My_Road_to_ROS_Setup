@@ -12,10 +12,13 @@ Open your WSL2/Ubuntu terminal and follow the instructions from [here](http://wi
 
 ## Installing X Server
 
-As your Ubuntu setup is headless, GUI access to it requires port forwarding on the host Windows system. After experimenting with various methods, I successfully accomplished this by following [this](https://www.youtube.com/watch?v=4SZXbl9KVsw) video tutorial. To further enhance the setup, add the following line to your `~/.bashrc` file:
+As your Ubuntu setup is headless, GUI access to it requires port forwarding on the host Windows system. After experimenting with various methods, I successfully accomplished this by following [this](https://www.youtube.com/watch?v=4SZXbl9KVsw) video tutorial. To further enhance the setup, add the following lines to your `~/.bashrc` file:
 
 ```
 export DISPLAY=$(cat /etc/resolv.conf |grep nameserver| sed 's/nameserver //'):0.0
+./startusb.sh
+./attach-cam.sh
+sudo chmod 777 /dev/video0
 ```
 
 Run `roscore`, `rqt_graph` in two different terminals and see if they work properly at this stage. If not, go back to any of the earlier steps and try to traceback where it went wrong.
@@ -37,4 +40,18 @@ $ usbipd wsl attach -b <busid> # Put the busid of your desired device here. For 
 $ usbipd bind --force -b <busid>
 ``` 
 
-- 
+- Open multiple `Ubuntu` terminals. Check if `roscore`, `rqt_graph` works properly. 
+
+## Camera Issue
+
+Run the following command after `roscore` and see whether it works or terminates with error:
+
+```
+rosrun usb_cam usb_cam_node
+```
+
+If it does not work, check your log files. One of the possible reasons might be that the default `yuyv` might not be not supported or has higher bitrate requirement compared to the USB port your device is connected to. You can change it to `mjpeg` by executing the following command:
+
+```
+rosparam set /usb_cam/pixel_format mjpeg
+```
